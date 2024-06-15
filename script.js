@@ -43,21 +43,30 @@ const perguntas = [
 ]
 let atual = 0;
 let perguntaAtual;
-
+function mostraPergunta() {
+    perguntaAtual = perguntas[atual];
+}
 function mostraPergunta() {
     perguntaAtual = perguntas[atual];
     caixaPerguntas.textContent = perguntaAtual.enunciado;
-    mostraAlternativas();
 }
-function mostraAlternativas() {
-    for(const alternativa of perguntaAtual.alternativas) {
+mostraPergunta()
+function mostraAlternativas(){
+    for(const alternativa of perguntaAtual.alternativas){
         const botaoAlternativas = document.createElement("button");
-        botaoAlternativa.textContent = alternativa;
-        caixaAlternativas.appendChild(botaoAlternativas);
+        botaoAlternativas.textContent = alternativa.texto;
+    caixaAlternativas.appendChild(botaoAlternativas);
     }
 }
-
-mostraPergunta();
-
-
+function mostraAlternativas(){
+    for(const alternativa of perguntaAtual.alternativas){
+            const botaoAlternativas = document.createElement("button");
+            botaoAlternativas.textContent = alternativa.texto;
+            botaoAlternativas.addEventListener("click", function(){
+                atual++;
+                mostraPergunta();
+            })
+            caixaAlternativas.appendChild(botaoAlternativas);
+        }
+    }
 
